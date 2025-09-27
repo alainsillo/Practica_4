@@ -1,0 +1,84 @@
+# practica1_figurasG.py
+# Práctica 1- graficacion:  Dibujar Figuras con Turtle 
+# Práctica hecha por alain alejandro pineda sanchez - 5SS
+# Estoy usando la librería turtle para dibujar figuras básicas
+# Cada figura está en una función y recibe coordenadas, tamaño y color.
+# Así lo puedo reutilizar y mover las figuras donde quiera.
+
+import turtle
+
+# --- Configuración de la ventana ---
+turtle.setup(800, 600)      # tamaño que quiero la ventana (ancho x alto)
+turtle.bgcolor("#fff0f5")   # color de fondo de la ventana
+t = turtle.Turtle()         # creo la pluma con la que voy a dibujar
+t.speed(3)                  # velocidad media para ver cómo se dibuja (ni tan lento ni tan rápido)
+
+
+# Función para dibujar un cuadrado  🟪 
+def dibujar_cuadrado(x, y, lado, color):
+    """
+    Dibuja un cuadrado bonito
+    """
+    t.penup()          # levanto la pluma para moverme sin dibujar
+    t.goto(x, y)       # me voy a la posición inicial (x,y)
+    t.pendown()        # bajo la pluma para empezar a dibujar
+    t.color(color)     # color que voy a usar (parámetro)
+    t.begin_fill()     # relleno activado
+    for _ in range(4): # un cuadrado tiene 4 lados
+        t.forward(lado) # me muevo hacia adelante el tamaño del lado
+        t.right(90)     # giro 90 grados a la derecha
+    t.end_fill()       # cierro el relleno, ya queda pintadito
+
+
+# Función para dibujar un triángulo 🔺 
+def dibujar_triangulo(x, y, lado, color):
+    """
+    Dibuja un triángulo como dorito
+    """
+    t.penup()       
+    t.goto(x, y)      # posición inicial
+    t.pendown()       
+    t.color(color)    # color que yo quiera
+    t.begin_fill()    
+    for _ in range(3): # el triángulo tiene 3 lados
+        t.forward(lado) # avanzo lo que mida cada lado
+        t.left(120)     # giro 120° (porque 360/3 = 120)
+    t.end_fill()       # cierro el relleno
+
+
+# Función para dibujar un círculo ⚪
+def dibujar_circulo(x, y, radio, color):
+    """
+    Dibuja un círculo muy perfecto
+    """
+    t.penup()
+    # aquí le resto el radio en Y para que el círculo quede bien centrado
+    t.goto(x, y - radio)
+    t.pendown()
+    t.color(color)
+    t.begin_fill()
+    t.circle(radio)    # comando de turtle para dibujar círculos
+    t.end_fill()
+
+
+# ➖ Función para dibujar una línea recta
+def dibujar_linea(x1, y1, x2, y2, color):
+    """
+    Dibuja una línea recta
+    """
+    t.penup()
+    t.goto(x1, y1)   # inicio de la línea
+    t.pendown()
+    t.color(color)
+    t.goto(x2, y2)   # fin de la línea
+
+
+# --- Dibujos de prueba ---
+# Aquí llamo a las funciones con coordenadas y colores en tonos rositas
+dibujar_cuadrado(-200, 200, 100, "#ff69b4")     # cuadrado
+dibujar_triangulo(100, 200, 120, "#ffb6c1")     # triángulo
+dibujar_circulo(0, -50, 60, "#ffc0cb")          # círculo
+dibujar_linea(-300, -200, 300, -200, "#db7093") # línea
+
+# Este comando hace que la ventana de turtle no se cierre sola al terminar
+turtle.done()
